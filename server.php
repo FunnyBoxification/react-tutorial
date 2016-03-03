@@ -47,7 +47,19 @@ function routeRequest()
         header('Cache-Control: no-cache');
         header('Access-Control-Allow-Origin: *');
         echo $comments;
-    } else {
+    }
+    elseif(preg_match('/\/api\/columnTexts(\?.*)?/', $uri)) {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $texto = array("text"=>"WOLOLO");
+            $textoJSON = json_encode($texto,true);
+            header('Content-Type: application/json');
+            header('Cache-Control: no-cache');
+            header('Access-Control-Allow-Origin: *');
+            echo $textoJSON;
+        }
+
+    }
+    else {
         return false;
     }
 }
